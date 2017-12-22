@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>My Lists</ion-title>
+    <ion-buttons end>
+      <button (click)="addWithModal()">
+          <ion-icon name="add" color="info"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list *ngIf="lists">
+    <ion-item-sliding #item *ngFor="let list of lists">
+      <button ion-item detail-none (click)="showItems(list.name)">
+        <ion-icon item-start="" name="cart" color="danger"></ion-icon>
+          <div>{{ list.name }}</div>
+          <ion-note item-end="">Created</ion-note>
+          <ion-note item-end="">{{ list.created }}</ion-note>
+      </button>
+      <ion-item-options side="left">
+        <button ion-button (click)="favorite(item)">Favorite</button>
+        <button ion-button color="danger" (click)="share(item)">Share</button>
+      </ion-item-options>
+  
+      <ion-item-options side="right">
+        <button ion-button (click)="unread(item)">Unread</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Items</ion-title>
+    <ion-buttons end>
+      <button (click)="addWithModal()">
+          <ion-icon name="add" color="info"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+ <!-- 
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <h2>{{ item.name }}</h2>
+      <p>{{ item.quantity }} Quantity for {{ item.unitPrice }} /Unit!</p>
+    </ion-item>
+  </ion-list>
+               -->
+  <ion-list *ngIf="items">
+      <ion-list-header style="font-size:1.2em; font-weight:600;" color="dark">
+          <ion-icon item-end="" name="list-box" color="secondary"></ion-icon>
+          {{listName}}
+      </ion-list-header>
+    <ion-item-sliding #item *ngFor="let it of items">
+      <button ion-item detail-none >
+        <ion-icon item-start="" name="cart" color="danger"></ion-icon>
+          <div>{{ it.name }}</div>
+          <ion-note item-end="">Quantity</ion-note>
+          <ion-note item-end="">2</ion-note>
+      </button>
+      <ion-item-options side="left">
+        <button ion-button (click)="favorite(item)">Favorite</button>
+        <button ion-button color="danger" (click)="share(item)">Share</button>
+      </ion-item-options>
+  
+      <ion-item-options side="right">
+        <button ion-button (click)="unread(item)">Unread</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
